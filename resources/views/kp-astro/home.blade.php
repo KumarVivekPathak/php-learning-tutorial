@@ -24,8 +24,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 50vh;
-            width: 50vh;
+            height: 400px;
+            width: 400px;
             border: 2px solid #fff;
         }
 
@@ -69,8 +69,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) rotate(45deg);
-            height: 35vh;
-            width: 35vh;
+            height: 280px;
+            width: 280px;
             border: 2px solid #fff;
             z-index: 1;
         }
@@ -84,153 +84,124 @@
         /* House numbers positioning */
         .house-number-1 {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #e74c3c;
-            padding: 10px 20px;
-            border-radius: 8px;
+            top: 39%;
+            left: 48%;
             color: white;
-            font-weight: bold;
+            font-weight: normal;
             z-index: 2;
+            font-size: 1.2rem;
         }
 
         .house-number-2 {
             position: absolute;
-            top: 10%;
-            left: 15%;
-            background-color: #2ecc71;
-            padding: 10px 20px;
-            border-radius: 8px;
+            top: 14%;
+            left: 24%;
             color: white;
-            font-weight: bold;
+            font-weight: normal;
             z-index: 2;
+            font-size: 1.2rem;
         }
 
         .house-number-3 {
             position: absolute;
-            top: 10%;
-            right: 15%;
-            background-color: #3498db;
-            padding: 10px 20px;
-            border-radius: 8px;
+            top: 18%;
+            left: 20%;
             color: white;
-            font-weight: bold;
+            font-weight: normal;
             z-index: 2;
+            font-size: 1.2rem;
         }
 
-        /* Add more house positions as needed
+        
         .house-number-4 {
             position: absolute;
-            top: 50%;
-            right: 5%;
-            transform: translateY(-50%);
-            background-color: #9b59b6;
-            padding: 10px 20px;
-            border-radius: 8px;
+            top: 43%;
+            left: 45%;
             color: white;
-            font-weight: bold;
+            font-weight: normal;
             z-index: 2;
+            font-size: 1.2rem;
         }
 
         .house-number-5 {
             position: absolute;
-            bottom: 10%;
-            right: 15%;
-            background-color: #f39c12;
-            padding: 10px 20px;
-            border-radius: 8px;
+            top: 68%;
+            left: 20%;
             color: white;
-            font-weight: bold;
+            font-weight: normal;
             z-index: 2;
+            font-size: 1.2rem;
         }
 
         .house-number-6 {
             position: absolute;
-            bottom: 10%;
-            left: 15%;
-            background-color: #e67e22;
-            padding: 10px 20px;
-            border-radius: 8px;
+            top: 72%;
+            left: 24%;
             color: white;
-            font-weight: bold;
+            font-weight: normal;
             z-index: 2;
+            font-size: 1.2rem;
         }
 
         .house-number-7 {
             position: absolute;
-            top: 50%;
-            left: 5%;
-            transform: translateY(-50%);
-            background-color: #1abc9c;
-            padding: 10px 20px;
-            border-radius: 8px;
+            top: 48%;
+            left: 48%;
             color: white;
-            font-weight: bold;
+            font-weight: normal;
             z-index: 2;
+            font-size: 1.2rem;
         }
 
         .house-number-8 {
             position: absolute;
-            bottom: 5%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #34495e;
-            padding: 10px 20px;
-            border-radius: 8px;
+            top: 72%;
+            left: 74%;
             color: white;
-            font-weight: bold;
+            font-weight: normal;
             z-index: 2;
+            font-size: 1.2rem;
         }
 
         .house-number-9 {
             position: absolute;
-            top: 5%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #16a085;
-            padding: 10px 20px;
-            border-radius: 8px;
+            top: 68%;
+            left: 77%;
             color: white;
-            font-weight: bold;
+            font-weight: normal;
             z-index: 2;
+            font-size: 1.2rem;
         }
 
         .house-number-10 {
             position: absolute;
-            top: 30%;
-            left: 10%;
-            background-color: #27ae60;
-            padding: 10px 20px;
-            border-radius: 8px;
+            top: 43%;
+            left: 52%;
             color: white;
-            font-weight: bold;
+            font-weight: normal;
             z-index: 2;
+            font-size: 1.2rem;
         }
 
         .house-number-11 {
             position: absolute;
-            top: 30%;
-            right: 10%;
-            background-color: #8e44ad;
-            padding: 10px 20px;
-            border-radius: 8px;
+            top: 18%;
+            left: 77%;
             color: white;
-            font-weight: bold;
+            font-weight: normal;
             z-index: 2;
+            font-size: 1.2rem;
         }
 
         .house-number-12 {
             position: absolute;
-            bottom: 30%;
-            left: 10%;
-            background-color: #c0392b;
-            padding: 10px 20px;
-            border-radius: 8px;
+            top: 14%;
+            left: 72%;
             color: white;
-            font-weight: bold;
+            font-weight: normal;
             z-index: 2;
-        } */
+            font-size: 1.2rem;
+        } 
 
     </style>
 </head>

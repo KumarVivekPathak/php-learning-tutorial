@@ -86,61 +86,66 @@
         color: white;
         font-weight: normal;
         z-index: 2;
-        font-size: 1.2rem;
+        font-size: 1rem;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .house-number-1 {
         top: 39%;
-        left: 48%;
+        left: 47%;
     }
 
     .house-number-2 {
         top: 14%;
-        left: 24%;
+        left: 22%;
     }
 
     .house-number-3 {
-        top: 18%;
-        left: 20%;
+        top: 19%;
+        left: 18%;
     }
 
     .house-number-4 {
-        top: 43%;
-        left: 45%;
+        top: 44%;
+        left: 43%;
     }
 
     .house-number-5 {
-        top: 68%;
-        left: 20%;
+        top: 69%;
+        left: 18%;
     }
 
     .house-number-6 {
-        top: 72%;
-        left: 24%;
+        top: 73%;
+        left: 23%;
     }
 
     .house-number-7 {
         top: 48%;
-        left: 48%;
+        left: 47%;
     }
 
     .house-number-8 {
-        top: 72%;
-        left: 74%;
+        top: 73%;
+        left: 73%;
     }
 
     .house-number-9 {
-        top: 68%;
+        top: 69%;
         left: 77%;
     }
 
     .house-number-10 {
-        top: 43%;
+        top: 44%;
         left: 52%;
     }
 
     .house-number-11 {
-        top: 18%;
+        top: 19%;
         left: 77%;
     }
 
@@ -254,7 +259,7 @@
 
         <article class="house">
             @for($i = 1; $i <= 12; $i++)
-                <h2 class="house-number house-number-{{ $i }}">{{ $i }}</h2>
+                <h2 class="house-number house-number-{{ $i }}">{{ $houseNumbers[$i] }}</h2>
             @endfor
 
             <span class="ascendant">ASC</span>
@@ -267,7 +272,7 @@
                                 $retro = $planet['isRetro'] ? '*' : '';
                                 $degree = $planet['degree']. '°';
                             @endphp
-                            <div>{{ $planet['shortName'] }}{{ $retro }}-{{ $degree }}</div>
+                            <div>{{ $planet['shortName'] }}{{ $retro }} {{ $degree }}</div>
                         @endforeach
                     </div>
                 @endif

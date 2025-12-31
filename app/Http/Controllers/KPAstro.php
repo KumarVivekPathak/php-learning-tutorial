@@ -6,6 +6,20 @@ use Illuminate\Http\Request;
 
 class KPAstro extends Controller
 {
+    public $zodiacSigns = [
+        'Aries' => 1, 
+        'Taurus' => 2, 
+        'Gemini' => 3, 
+        'Cancer' => 4, 
+        'Leo' => 5, 
+        'Virgo' => 6, 
+        'Libra' => 7, 
+        'Scorpio' => 8, 
+        'Sagittarius' => 9, 
+        'Capricorn' => 10, 
+        'Aquarius' => 11, 
+        'Pisces' => 12
+    ];
 
     public  $kpAstroData = [
         [
@@ -170,7 +184,7 @@ class KPAstro extends Controller
             'norm_degree' => 27.9287,
             'formatted_norm_degree' => '27:55:43',
             'house' => 1,
-            'sign' => 'Libra',
+            'sign' => 'Pisces',
             'sign_lord' => 'Venus',
             'nakshatra' => 'Vishakha',
             'nakshatra_lord' => 'Jupiter',
@@ -195,7 +209,34 @@ class KPAstro extends Controller
     public function kundali()
     {
         $housesPlanets = $this->convertToHouseBasedData($this->kpAstroData);
-        return view("kp-astro.kundali", compact('housesPlanets') );
+        
+        // Find the Ascendant's sign
+        $ascSign = '';
+        foreach($this->kpAstroData as $planet) {
+            if ($planet['planet_name'] === 'Ascendant') {
+                $ascSign = $planet['sign'];
+                break;
+            }
+        }
+        
+        // Default to Aries if Ascendant not found
+        if (empty($ascSign)) {
+            $ascSign = 'Aries';
+        }
+        
+        // Get the zodiac number for the Ascendant's sign
+        $ascZodiacNum = $this->zodiacSigns[$ascSign] ?? 1;
+        
+        // Calculate house numbers based on Ascendant's zodiac sign
+        $houseNumbers = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $houseNumbers[$i] = (($ascZodiacNum + $i - 2) % 12) + 1;
+        }
+        
+        return view("kp-astro.kundali", [
+            'housesPlanets' => $housesPlanets,
+            'houseNumbers' => $houseNumbers
+        ]);
     }
 
     public function convertToHouseBasedData($kpAstroData)
@@ -211,12 +252,33 @@ class KPAstro extends Controller
             ];
         }
 
+        $ascHouse = 0;
+        foreach($kpAstroData as $planet) {
+            if ($planet['planet_name'] === 'Ascendant') {
+                $ascHouse = $planet['house'];
+                break;
+            }
+        }
+
+        if ($ascHouse === 0) {
+            $ascHouse = 1;
+        }
+
+
+        $houseOffset = $ascHouse - 1;
+
         foreach ($kpAstroData as $planet) {
             if ($planet['planet_name'] === 'Ascendant') {
                 continue;
             }
             
-            $houseNum = $planet['house'];
+            // Calculate the adjusted house number
+            $originalHouse = $planet['house'];
+            $adjustedHouse = (($originalHouse - $houseOffset + 11) % 12) + 1;
+            
+            // Update the planet's house number
+            $planet['house'] = $adjustedHouse;
+            $houseNum = $adjustedHouse;
 
             if(empty($houseData[$houseNum]['sign'])) {
                 $houseData[$houseNum]['sign'] = $planet['sign'];

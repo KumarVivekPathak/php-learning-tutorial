@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class KPAstro extends Controller
 {
 
-    public $kpAstroData = [
+    public  $kpAstroData = [
         [
             'planet_id' => 0,
             'planet_name' => 'Sun',
@@ -33,7 +33,7 @@ class KPAstro extends Controller
             'is_retro' => false,
             'norm_degree' => 11.7235,
             'formatted_norm_degree' => '11:43:24',
-            'house' => 9,
+            'house' => 6,
             'sign' => 'Aries',
             'sign_lord' => 'Mars',
             'nakshatra' => 'Ashwini',
@@ -50,7 +50,7 @@ class KPAstro extends Controller
             'is_retro' => false,
             'norm_degree' => 13.4199,
             'formatted_norm_degree' => '13:25:11',
-            'house' => 10,
+            'house' => 8,
             'sign' => 'Gemini',
             'sign_lord' => 'Mercury',
             'nakshatra' => 'Ardra',
@@ -67,7 +67,7 @@ class KPAstro extends Controller
             'is_retro' => true,
             'norm_degree' => 25.4917,
             'formatted_norm_degree' => '25:29:30',
-            'house' => 11,
+            'house' => 8,
             'sign' => 'Gemini',
             'sign_lord' => 'Mercury',
             'nakshatra' => 'Punarvasu',
@@ -84,7 +84,7 @@ class KPAstro extends Controller
             'is_retro' => false,
             'norm_degree' => 5.5301,
             'formatted_norm_degree' => '05:31:48',
-            'house' => 12,
+            'house' => 7,
             'sign' => 'Taurus',
             'sign_lord' => 'Venus',
             'nakshatra' => 'Krittika',
@@ -101,7 +101,7 @@ class KPAstro extends Controller
             'is_retro' => false,
             'norm_degree' => 16.5718,
             'formatted_norm_degree' => '16:34:18',
-            'house' => 1,
+            'house' => 8,
             'sign' => 'Gemini',
             'sign_lord' => 'Mercury',
             'nakshatra' => 'Ardra',
@@ -118,7 +118,7 @@ class KPAstro extends Controller
             'is_retro' => false,
             'norm_degree' => 2.3971,
             'formatted_norm_degree' => '02:23:49',
-            'house' => 2,
+            'house' => 7,
             'sign' => 'Taurus',
             'sign_lord' => 'Venus',
             'nakshatra' => 'Krittika',
@@ -135,7 +135,7 @@ class KPAstro extends Controller
             'is_retro' => true,
             'norm_degree' => 1.7593,
             'formatted_norm_degree' => '01:45:33',
-            'house' => 3,
+            'house' => 9,
             'sign' => 'Cancer',
             'sign_lord' => 'Moon',
             'nakshatra' => 'Punarvasu',
@@ -152,7 +152,7 @@ class KPAstro extends Controller
             'is_retro' => true,
             'norm_degree' => 1.7593,
             'formatted_norm_degree' => '01:45:33',
-            'house' => 4,
+            'house' => 3,
             'sign' => 'Capricorn',
             'sign_lord' => 'Saturn',
             'nakshatra' => 'Uttra Shadha',
@@ -178,7 +178,6 @@ class KPAstro extends Controller
             'sub_lord' => 'Venus',
             'sub_sub_lord' => 'Jupiter',
         ],
-
     ];
 
     public function index()

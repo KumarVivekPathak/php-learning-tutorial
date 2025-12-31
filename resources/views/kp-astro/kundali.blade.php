@@ -192,7 +192,7 @@
     }
 
     .house-planet-6 {
-        top: 87%;
+        top: 90%;
         left: 25%;
         transform: translate(-50%, -50%);
     }
@@ -204,7 +204,7 @@
     }
 
     .house-planet-8 {
-        top: 87%;
+        top: 90%;
         left: 75%;
         transform: translate(-50%, -50%);
     }

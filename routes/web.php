@@ -30,4 +30,5 @@ Route::prefix("kp-astro")->group(function () {
     Route::get("/", [KPAstro::class, 'index']);
 });
 
+Route::get("/kundali", [KPAstro::class, 'kundali']);
 

@@ -255,21 +255,23 @@
         <article class="house">
             @for($i = 1; $i <= 12; $i++)
                 <h2 class="house-number house-number-{{ $i }}">{{ $i }}</h2>
-                @endfor
+            @endfor
 
-                <span class="ascendant">ASC</span>
+            <span class="ascendant">ASC</span>
 
-                @for($i = 1; $i <= 12; $i++)
-                    @if(!empty($housesPlanets[$i]['planets']))
+            @for($i = 1; $i <= 12; $i++)
+                @if(!empty($housesPlanets[$i]['planets']))
                     <div class="house-planet house-planet-{{ $i }}">
-                    @foreach($housesPlanets[$i]['planets'] as $planet)
-                    @php
-                    $retro = $planet['isRetro'] ? '*' : '';
-                    $degree = $planet['degree']. '°';
-                    @endphp
-                    <div>{{ $planet['shortName'] }}{{ $retro }}-{{ $degree }}</div>
-                    @endforeach
+                        @foreach($housesPlanets[$i]['planets'] as $planet)
+                            @php
+                                $retro = $planet['isRetro'] ? '*' : '';
+                                $degree = $planet['degree']. '°';
+                            @endphp
+                            <div>{{ $planet['shortName'] }}{{ $retro }}-{{ $degree }}</div>
+                        @endforeach
+                    </div>
+                @endif
+            @endfor
+        </article>
     </div>
-    @endif
-    @endfor
 </article>

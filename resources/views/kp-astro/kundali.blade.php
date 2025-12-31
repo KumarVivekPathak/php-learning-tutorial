@@ -273,9 +273,3 @@
     @endif
     @endfor
 </article>
-
-</div>
-</article>
-</body>
-
-</html>

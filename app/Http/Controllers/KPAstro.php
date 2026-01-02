@@ -196,14 +196,36 @@ class KPAstro extends Controller
 
     public function index()
     {
-        $housesPlanets = [];
-        for ($i = 1; $i <= 12; $i++) {
-            $housesPlanets[$i] = [];    
+        $housesPlanets = $this->convertToHouseBasedData($this->kpAstroData);
+        
+        // Find the Ascendant's sign
+        $ascSign = '';
+        foreach($this->kpAstroData as $planet) {
+            if ($planet['planet_name'] === 'Ascendant') {
+                $ascSign = $planet['sign'];
+                break;
+            }
         }
         
-        $housesPlanets = $this->convertToHouseBasedData($this->kpAstroData);
-
-        return view("kp-astro.home", compact('kpAstroData', 'housesPlanets') );
+        // Default to Aries if Ascendant not found
+        if (empty($ascSign)) {
+            $ascSign = 'Aries';
+        }
+        
+        // Get the zodiac number for the Ascendant's sign
+        $ascZodiacNum = $this->zodiacSigns[$ascSign] ?? 1;
+        
+        // Calculate house numbers based on Ascendant's zodiac sign
+        $houseNumbers = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $houseNumbers[$i] = (($ascZodiacNum + $i - 2) % 12) + 1;
+        }
+        
+        return view("kp-astro.kundali", [
+            'housesPlanets' => $housesPlanets,
+            'houseNumbers' => $houseNumbers
+        ]);
+    
     }
 
     public function kundali()

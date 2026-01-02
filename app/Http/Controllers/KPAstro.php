@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Http;
 
 use Illuminate\Http\Request;
 
@@ -221,10 +222,17 @@ class KPAstro extends Controller
             $houseNumbers[$i] = (($ascZodiacNum + $i - 2) % 12) + 1;
         }
         
-        return view("kp-astro.kundali", [
-            'housesPlanets' => $housesPlanets,
-            'houseNumbers' => $houseNumbers
-        ]);
+        $geonames = null;
+
+        // return view("kp-astro.home", [
+        //     'housesPlanets' => $housesPlanets,
+        //     'houseNumbers' => $houseNumbers,
+        //     'geonames' => $geonames
+        // ]);
+
+        return view("kp-astro.home", compact(
+            "housesPlanets", "houseNumbers", "geonames"
+        ));
     
     }
 
@@ -336,5 +344,114 @@ class KPAstro extends Controller
         ];
         return $shortNames[$planetName] ?? substr($planetName, 0, 2);
     }
+
+    public function getGeoDetails(Request $request){
+        $place = $request->input('place');
+        $responseJSON = $this->getGeoDetailsFromAPINew2($place);
+        $geonames = json_decode($responseJSON, true)['geonames'];
+
+        $housesPlanets = $this->convertToHouseBasedData($this->kpAstroData);
+        
+        // Find the Ascendant's sign
+        $ascSign = '';
+        foreach($this->kpAstroData as $planet) {
+            if ($planet['planet_name'] === 'Ascendant') {
+                $ascSign = $planet['sign'];
+                break;
+            }
+        }
+        
+        // Default to Aries if Ascendant not found
+        if (empty($ascSign)) {
+            $ascSign = 'Aries';
+        }
+        
+        // Get the zodiac number for the Ascendant's sign
+        $ascZodiacNum = $this->zodiacSigns[$ascSign] ?? 1;
+        
+        // Calculate house numbers based on Ascendant's zodiac sign
+        $houseNumbers = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $houseNumbers[$i] = (($ascZodiacNum + $i - 2) % 12) + 1;
+        }
+        
+
+        // return view("kp-astro.home", [
+        //     'geonames' => $geonames
+        // ]);
+
+        return view("kp-astro.home", compact(
+            "housesPlanets", "houseNumbers", "geonames"
+        ));
+
+    }
+
+    public function getGeoDetailsFromAPI($place){
+        print_r($place);
+        $username = '1234567890';
+        $password = '41cd3e8f7d41f037a17f45aede9538a8041e8932';
+
+        $url = 'https://json.astrologyapi.com/v1/geo_details';
+        
+
+        $response = Http::asForm()          
+        ->withBasicAuth($username, $password)
+        ->post($url, [
+            'place'   => $place,
+            'maxRows' => 6,
+        ]);
+
+        // if ($response->failed()) {
+        // return [
+        //     'error' => true,
+        //     'status' => $response->status(),
+        //     'message' => $response->body(),
+        //     ];
+        // }
+
+        dd($response->json());
+
+    // $responseJSON = $response->json();
+    // print_r( json_encode( $responseJSON));
+    }
+
+    public function getGeoDetailsFromAPINew2($place)
+{
+
+    $username = '648024';            
+    $password = '41cd3e8f7d41f037a17f45aede9538a8041e8932';     
+    $url = 'https://json.astrologyapi.com/v1/geo_details';
+    $auth = base64_encode($username . ':' . $password);
+    $ch = curl_init();
+    $postData = http_build_query([
+        'place'   => $place,
+        'maxRows' => 6
+    ]);
+    curl_setopt_array($ch, [
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => $postData,
+        CURLOPT_HTTPHEADER => [
+            'Authorization: Basic ' . $auth,
+            'Content-Type: application/x-www-form-urlencoded'
+        ],
+        CURLOPT_TIMEOUT => 30,
+    ]);
+    $response = curl_exec($ch);
+
+    if (curl_errno($ch)) {
+        curl_close($ch);
+        return [
+            'error' => true,
+            'message' => curl_error($ch)
+        ];
+    }
+    curl_close($ch);
+
+    // dd($response);
+    // print_r(json_encode($response));
+    return $response;
+}
 
 }

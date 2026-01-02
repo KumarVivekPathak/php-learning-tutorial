@@ -29,6 +29,7 @@ Route::get("admin", [UserController::class, 'adminLogin']);
 Route::prefix("kp-astro")->group(function () {
     Route::get("/", [KPAstro::class, 'index']);
     Route::get("/kundali", [KPAstro::class, 'kundali']);
+    Route::post("/get-geo-details", [KPAstro::class, 'getGeoDetails'])->name('get-geo-details');
 });
 
 
